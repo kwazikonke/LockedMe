@@ -9,11 +9,15 @@ public class LockedMeApplication {
 	//Defining constant DIRECTORY_PATH where the files will be stored
 	
 	private static final String DIRECTORY_PATH = "myDb";
+	
+	// Creating Scanner object named scanner to read user input
 	private static final Scanner scanner = new Scanner(System.in); 
 	 
 	public static void main(String[] args) {
 	
-		// Creating the repository directory.
+		// Creating the repository directory
+		// Check if the myDb directory exists
+		// If it doesn't exist, we create it using mkdir().
 		
         File directory = new File(DIRECTORY_PATH);
         if (!directory.exists()) {
@@ -74,12 +78,13 @@ public class LockedMeApplication {
         }
         
      // listing the files in the specified directory (myDB) in ascending order
-        
         private static void listFilesInAscendingOrder() {
         	
             File directory = new File(DIRECTORY_PATH);
             String[] files = directory.list();
-
+            
+    // Checking if there are files in the directory and sorts and displays them if found
+            
             if (files != null && files.length > 0) {
                 Arrays.sort(files);
                 System.out.println("Files in ascending order:");
@@ -93,12 +98,13 @@ public class LockedMeApplication {
             }
         }
         
-      // Prompting the user to enter a file name and checking if it already exist 
-      // then create new one
+      // Prompting the user to enter a file name
         
         private static void uploadFile() {
             System.out.print("Enter the name of the file: ");
             String fileName = scanner.next();
+            
+       // Checking if the file already exists, and then creates the file if it doesn't exist
             
             File file = new File(DIRECTORY_PATH + File.separator + fileName);
             
@@ -124,7 +130,10 @@ public class LockedMeApplication {
             System.out.print("Enter the name of the file to delete: ");
             String fileName = scanner.next();
             File file = new File(DIRECTORY_PATH + File.separator + fileName);
-
+            
+         // Checking if the file exists and attempts to delete it, 
+        // providing appropriate feedback to the user
+            
             if (file.exists() && file.delete()) {
                 System.out.println("File deleted successfully.");
             } 
@@ -139,7 +148,10 @@ public class LockedMeApplication {
             System.out.print("Enter the name of the file to search: ");
             String fileName = scanner.next();
             File file = new File(DIRECTORY_PATH + File.separator + fileName);
-
+            
+       // Checking if the file exists and provides the file's path if found 
+       // or notifies the user if the file is not found
+            
             if (file.exists()) {
                 System.out.println("File found: " + file.getAbsolutePath());
             } 
