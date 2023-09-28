@@ -26,17 +26,17 @@ public class LockedMeApplication {
         
         // Showing the first welcome screen with options
         
-        displayWelcomeScreen();
+        WelcomeScreen();
         
         // getting the user's choice and execute the corresponding action
         // based on the selected menu option
         
         while (true) {
-            int choice = getUserChoice();
+            int userChoice = userInput();
 
-            switch (choice) {
+            switch (userChoice) {
                 case 1:
-                    listFilesInAscendingOrder();
+                    viewFiles();
                     break;
                 case 2:
                     uploadFile();
@@ -48,21 +48,21 @@ public class LockedMeApplication {
                     searchFile();
                     break;
                 case 5:
-                	  System.out.println("Application closing");
+                	  System.out.println("Application closed!!!");
                       System.exit(0);
                   default:
-                      System.out.println("Invalid choice. Please try again!.");
+                      System.out.println("Invalid choice, Please try again!");
               }
           }
       }
 	
 	  // Displaying the welcome screen and available menu options
 	
-        private static void displayWelcomeScreen() {
+        private static void WelcomeScreen() {
         System.out.println("Welcome to LockedMe Application!!!\n");
         System.out.println("Developer: Kwazikonke Mbatha\n");
         System.out.println("-------------!!-------------");
-        System.out.println("Menu:");
+        System.out.println("Menu options:");
         System.out.println("1. View Files in Ascending Order");
         System.out.println("2. Upload a File");
         System.out.println("3. Delete a File");
@@ -72,16 +72,16 @@ public class LockedMeApplication {
         
      // Prompting the user to enter their choice and returning the integer entered by the user
         
-        private static int getUserChoice() {
+        private static int userInput() {
             System.out.print("Choose a task you wish to perform (1,2,3,4,5) : ");
             return scanner.nextInt();
         }
         
      // listing the files in the specified directory (myDB) in ascending order
-        private static void listFilesInAscendingOrder() {
+        private static void viewFiles() {
         	
-            File directory = new File(DIRECTORY_PATH);
-            String[] files = directory.list();
+            File dir = new File(DIRECTORY_PATH);
+            String[] files = dir.list();
             
     // Checking if there are files in the directory and sorts and displays them if found
             
@@ -109,7 +109,7 @@ public class LockedMeApplication {
             File file = new File(DIRECTORY_PATH + File.separator + fileName);
             
             if (file.exists()) {
-                System.out.println("File already exists.");
+                System.out.println("File already exists");
             } 
             else {
                 try {
@@ -153,7 +153,7 @@ public class LockedMeApplication {
        // or notifies the user if the file is not found
             
             if (file.exists()) {
-                System.out.println("File found: " + file.getAbsolutePath());
+                System.out.println("File found at: " + file.getAbsolutePath());
             } 
             else {
                 System.out.println("File not found.");
